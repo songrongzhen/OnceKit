@@ -18,7 +18,7 @@
 
 ```xml
 <dependency>
-    <groupId>com.oncekit</groupId>
+    <groupId>io.github.songrongzhen</groupId>
     <artifactId>once-kit-spring-boot-starter</artifactId>
     <version>1.0.0</version>
 </dependency>
