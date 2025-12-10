@@ -64,17 +64,17 @@
   ✅ 关键点：SET key value PX expire NX 是 Redis 原子命令，确保“查+设”不被并发打断。
 ### 步骤 5️⃣：根据 Lua 返回值决定是否放行
   - 情况 A：首次请求
-  - - Redis 返回 "OK"（或 true）
-  - - tryLock() 返回 true
+     - Redis 返回 "OK"（或 true）
+     - tryLock() 返回 true
   AOP 放行 → 执行 enroll() 业务逻辑
   - 情况 B：重复请求（300 秒内）
-   - - Redis 返回 nil（因为 NX 导致 SET 失败）
-   - - tryLock() 返回 false
-   - - AOP 抛出异常：
+     - Redis 返回 nil（因为 NX 导致 SET 失败）
+     - tryLock() 返回 false
+     - AOP 抛出异常：
    ```java
      throw new IllegalStateException("重复请求，请勿重复提交");
    ```
-  - - Spring MVC 捕获异常 → 返回 500 错误（或自定义的全局异常处理）
+- Spring MVC 捕获异常 → 返回 500 错误（或自定义的全局异常处理）
   ### 步骤 6️⃣：Redis 自动过期（无需清理）
   - 300 秒后，Key 自动消失
   - 下次请求视为新请求，可再次通过
