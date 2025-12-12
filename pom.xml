@@ -146,6 +146,11 @@
     <profiles>
         <profile>
             <id>release</id>
+            <modules>
+                <!-- 只发布核心模块 -->
+                <module>once-kit-core</module>
+                <module>once-kit-spring-boot-starter</module>
+            </modules>
             <build>
                 <plugins>
                     <!-- 发布插件（自动处理 staging） -->
