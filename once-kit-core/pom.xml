@@ -5,7 +5,7 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.oncekit</groupId>
+        <groupId>io.github.songrongzhen</groupId>
         <artifactId>once-kit</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -20,3 +20,4 @@
         </dependency>
     </dependencies>
 </project>
+
