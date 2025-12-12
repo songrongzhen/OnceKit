@@ -12,11 +12,6 @@
 
     <artifactId>once-kit-example</artifactId>
 
-    <!-- ✅ 跳过发布到 Central -->
-    <properties>
-        <central.publish.skip>true</central.publish.skip>
-    </properties>
-
     <dependencies>
 
         <dependency>
