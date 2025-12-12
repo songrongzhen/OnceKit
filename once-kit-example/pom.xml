@@ -12,9 +12,15 @@
 
     <artifactId>once-kit-example</artifactId>
 
+    <!-- 跳过发布到 Central -->
+    <properties>
+        <central.publish.skip>true</central.publish.skip>
+    </properties>
+
     <dependencies>
+        <!-- 修正为正确的 Group ID -->
         <dependency>
-            <groupId>com.oncekit</groupId>
+            <groupId>io.github.songrongzhen</groupId>
             <artifactId>once-kit-spring-boot-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
@@ -36,12 +42,10 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <compilerArgs>
-                        <arg>-parameters</arg>  <!-- 保留方法参数名 -->
+                        <arg>-parameters</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 </project>
-
-

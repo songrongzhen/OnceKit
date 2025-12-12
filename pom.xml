@@ -12,7 +12,6 @@
 
     <name>OnceKit</name>
     <description>A general-purpose idempotent and duplicate prevention middleware for Spring Boot</description>
-    <url>https://github.com/songrongzhen/OnceKit</url>
 
     <!-- 开源协议 -->
     <licenses>
@@ -34,11 +33,11 @@
     </developers>
 
     <!-- SCM 信息 -->
+    <url>https://github.com/songrongzhen/OnceKit</url>
     <scm>
         <connection>scm:git:git://github.com/songrongzhen/OnceKit.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:songrongzhen/OnceKit.git</developerConnection>
         <url>https://github.com/songrongzhen/OnceKit</url>
-        <tag>HEAD</tag>
     </scm>
 
     <!-- 发布仓库配置（Sonatype OSSRH） -->
@@ -129,6 +128,16 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.5.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
+                </configuration>
             </plugin>
         </plugins>
     </build>
