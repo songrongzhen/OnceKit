@@ -12,13 +12,13 @@
 
     <artifactId>once-kit-example</artifactId>
 
-    <!-- 跳过发布到 Central -->
+    <!-- ✅ 跳过发布到 Central -->
     <properties>
         <central.publish.skip>true</central.publish.skip>
     </properties>
 
     <dependencies>
-        <!-- 修正为正确的 Group ID -->
+
         <dependency>
             <groupId>io.github.songrongzhen</groupId>
             <artifactId>once-kit-spring-boot-starter</artifactId>
@@ -36,15 +36,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <compilerArgs>
-                        <arg>-parameters</arg>
-                    </compilerArgs>
-                </configuration>
             </plugin>
         </plugins>
     </build>
