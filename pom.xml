@@ -10,6 +10,49 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
+    <name>OnceKit</name>
+    <description>A general-purpose idempotent and duplicate prevention middleware for Spring Boot</description>
+    <url>https://github.com/songrongzhen/OnceKit</url>
+
+    <!-- 开源协议 -->
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <name>Song Rongzhen</name>
+            <email>15175033237@163.com</email>
+            <organization>github</organization>
+            <organizationUrl>https://github.com/songrongzhen</organizationUrl>
+        </developer>
+    </developers>
+
+    <!-- SCM 信息 -->
+    <scm>
+        <connection>scm:git:git://github.com/songrongzhen/OnceKit.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:songrongzhen/OnceKit.git</developerConnection>
+        <url>https://github.com/songrongzhen/OnceKit</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- 发布仓库配置（Sonatype OSSRH） -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <modules>
         <module>once-kit-core</module>
         <module>once-kit-spring-boot-starter</module>
@@ -36,4 +79,82 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- 构建插件：确保生成 sources 和 javadoc -->
+    <build>
+        <plugins>
+            <!-- Source 插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Javadoc 插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <doclint>none</doclint>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- GPG 签名插件（部署时自动签名） -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 配置 profile：只在 release 时启用签名（可选） -->
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- 发布插件（自动处理 staging） -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.13</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
+
+
