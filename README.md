@@ -16,6 +16,8 @@
 
 ### 1. 引入依赖
 
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-Search-blue)](https://mvnrepository.com/artifact/io.github.songrongzhen/once-kit-spring-boot-starter/)
+
 ```xml
 <dependency>
     <groupId>io.github.songrongzhen</groupId>
